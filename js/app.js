@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var distance = distanceInput ? parseFloat(distanceInput.value) : 0;
         
         // Get selected transport mode (checked radio button value)
-        var transportModeInput = document.querySelector('input[name="transport-mode"]:checked');
+        var transportModeInput = document.querySelector('input[name="transport"]:checked');
         var transportMode = transportModeInput ? transportModeInput.value : '';
         
         // Step 3: Validate inputs
@@ -100,9 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Step 6: Hide previous results sections
-        UI.hideElement('results-section');
-        UI.hideElement('comparison-section');
-        UI.hideElement('carbon-credits-section');
+        UI.hideElement('results');
+        UI.hideElement('comparison');
+        UI.hideElement('carbon-credits');
         
         // Step 7: Simulate processing with setTimeout (1500ms delay)
         setTimeout(function() {
@@ -179,12 +179,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 /* ========== SHOW RESULTS SECTIONS ========== */
                 
                 // Show all three result sections
-                UI.showElement('results-section');
-                UI.showElement('comparison-section');
-                UI.showElement('carbon-credits-section');
+                UI.showElement('results');
+                UI.showElement('comparison');
+                UI.showElement('carbon-credits');
                 
                 // Scroll to results section for better UX
-                UI.scrollToElement('results-section');
+                UI.scrollToElement('results');
                 
                 // Hide loading state on button
                 if (submitButton) {

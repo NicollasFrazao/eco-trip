@@ -92,7 +92,7 @@ var CONFIG = {
         var destinationInput = document.getElementById('destination');
         var distanceInput = document.getElementById('distance');
         var manualCheckbox = document.getElementById('manual-distance');
-        var helperText = document.getElementById('distance-helper');
+        var helperText = document.querySelector('.form-group__helper');
         
         // Verify all elements exist
         if (!originInput || !destinationInput || !distanceInput) {
@@ -104,6 +104,12 @@ var CONFIG = {
          * Try to find and fill distance automatically
          */
         function tryAutoFillDistance() {
+            // Check if manual mode is enabled
+            if (manualCheckbox && manualCheckbox.checked) {
+                // Skip auto-fill in manual mode
+                return;
+            }
+            
             // Get trimmed values
             var origin = originInput.value.trim();
             var destination = destinationInput.value.trim();
@@ -136,7 +142,7 @@ var CONFIG = {
             } else {
                 // Clear distance if origin or destination is empty
                 distanceInput.value = '';
-                distanceInput.readOnly = false;
+                distanceInput.readOnly = true;
                 
                 if (helperText) {
                     helperText.textContent = 'A distância será preenchida automaticamente';
@@ -162,8 +168,23 @@ var CONFIG = {
                         helperText.style.color = '#6b7280'; // Gray
                     }
                 } else {
-                    // Auto mode - try to find route again
-                    tryAutoFillDistance();
+                    // Auto mode - try to find route again and set readonly
+                    var origin = originInput.value.trim();
+                    var destination = destinationInput.value.trim();
+                    
+                    if (origin && destination) {
+                        // Try to find distance automatically
+                        tryAutoFillDistance();
+                    } else {
+                        // No cities selected - clear and set readonly
+                        distanceInput.value = '';
+                        distanceInput.readOnly = true;
+                        
+                        if (helperText) {
+                            helperText.textContent = 'A distância será preenchida automaticamente';
+                            helperText.style.color = '#6b7280'; // Gray
+                        }
+                    }
                 }
             });
         }
