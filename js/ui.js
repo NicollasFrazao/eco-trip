@@ -93,8 +93,9 @@ var UI = {
         var modeMetadata = CONFIG.TRANSPORT_MODES[data.mode];
         
         // Build HTML string with results cards
-        // Structure: Container > Multiple cards showing different result aspects
-        var html = '<div class="results__container">';
+        // Structure: Title + Container > Multiple cards showing different result aspects
+        var html = '<h2 class="results__title">📊 Resultados da Calculadora</h2>';
+        html += '<div class="results__container">';
         
         // Card 1: Route information (origin -> destination)
         html += '<div class="results__card">';
@@ -159,7 +160,8 @@ var UI = {
      */
     renderComparison: function(modesArray, selectedMode) {
         // Build HTML string for comparison section
-        var html = '<div class="comparison__container">';
+        var html = '<h2 class="comparison__title">🔄 Comparação entre Meios de Transporte</h2>';
+        html += '<div class="comparison__container">';
         
         // Find maximum emission for progress bar scaling
         var maxEmission = 0;
@@ -253,7 +255,8 @@ var UI = {
      */
     renderCarbonCredits: function(creditsData) {
         // Build HTML string for carbon credits section
-        var html = '<div class="carbon__container">';
+        var html = '<h2 class="carbon-credits__title">🌍 Créditos de Carbono</h2>';
+        html += '<div class="carbon__container">';
         
         // Grid with 2 main cards
         html += '<div class="carbon__grid">';
